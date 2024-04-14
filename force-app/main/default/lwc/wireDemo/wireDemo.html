@@ -1,0 +1,18 @@
+<template>
+    <lightning-card title="Create Account" icon-name="custom:custom14">
+        <div class="slds-var-p-around_small">
+            <lightning-combobox
+            name="parentacc"
+            label="Parent Account"
+            placeholder="Select Parent Account"
+            options={parentoptions}
+            onchange={handleChange}
+            required="true"
+            ></lightning-combobox>
+        </div>
+    </lightning-card>
+
+    <lightning-input placeholder="Enter account Name" onchange={handleChange} name="accname" type="text" required="true"
+        message-when-value-missing="Enter the Account Name" min-length="2" max-lenth="60"
+        message-when-too-short="Minimun length is 2" message-when-too-long="Maximum length is 60"></lightning-input>
+</template>

@@ -1,0 +1,119 @@
+<template>
+    <lightning-card title="Opportunity List 104">
+        <div class="button-container">
+            <lightning-button variant="brand" label="Load All Opportunities"
+                onclick={handleLoadAllOpportunities}></lightning-button>
+            <template if:true={showTable}>
+                <lightning-button label="Close" variant="destructive-text" onclick={handleClose}></lightning-button>
+            </template>
+                <lightning-button label="Insert a New Record" variant="brand-outline" onclick={handlenew}></lightning-button>
+        </div>
+        <div class="slds-m-around_medium">
+            <div class="slds-var-p-around_small">
+            </div>
+            <template if:true={showTable}>
+                <div class="slds-form slds-form_inline">
+
+                    <lightning-input class="custom-input" type="text" value={searchTerm} label="Search by Opportunity" placeholder="Search by Opportunity Name" onchange={handleSearch}></lightning-input>
+
+
+
+                    <lightning-combobox label="Filter by Stage" value={selectedStage} options={stageOptions}
+                        onchange={handleStageChange}></lightning-combobox>
+                </div>
+                <table class="slds-table slds-table_bordered slds-table_cell-buffer">
+                    <thead>
+                        <tr class="slds-text-title_caps">
+                            <th scope="col">
+                                <div class="slds-truncate" title="Opportunity Name">Opportunity Name</div>
+                            </th>
+                            <th scope="col">
+                                <div class="slds-truncate" title="Stage">Stage</div>
+                            </th>
+                            <th scope="col">
+                                <div class="slds-truncate" title="Close Date">Close Date</div>
+                            </th>
+
+                            <th scope="col">
+                                <div class="slds-truncate" title="Close Date">Type</div>
+                            </th>
+
+                            <th scope="col">
+                                <div class="slds-truncate" title="Close Date">Owner Id</div>
+                            </th>
+
+                            <th scope="col">
+                                <div class="slds-truncate" title="Close Date">Order Number</div>
+                            </th>
+
+                            <th scope="col">
+                                <div class="slds-truncate" title="Action">Action</div>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <template for:each={filteredOpportunities} for:item="opp">
+                            <tr key={opp.Id}>
+                                <td data-label="Opportunity Name">
+                                    <div class="slds-truncate" title={opp.Name}>{opp.Name}</div>
+                                </td>
+                                <td data-label="Stage">
+                                    <div class="slds-truncate" title={opp.StageName}>{opp.StageName}</div>
+                                </td>
+                                <td data-label="Close Date">
+                                    <div class="slds-truncate" title={opp.CloseDate}>{opp.CloseDate}</div>
+                                </td>
+
+
+                                <td data-label="Close Date">
+                                    <div class="slds-truncate" title={opp.CloseDate}>{opp.Type}</div>
+                                </td>
+
+                                <td data-label="Close Date">
+                                    <div class="slds-truncate" title={opp.CloseDate}>{opp.OwnerId}</div>
+                                </td>
+
+                                <td data-label="Close Date">
+                                    <div class="slds-truncate" title={opp.CloseDate}>{opp.OrderNumber__c}</div>
+                                </td>
+
+                                <td>
+                                    <lightning-button-group>
+                                        <lightning-button label="View" variant="brand" data-record-id={opp.Id}
+                                        onclick={handleView}></lightning-button>
+                                        <lightning-button label="Edit" variant="brand-outline" data-record-id={opp.Id}
+                                            onclick={handleEdit}></lightning-button>
+                                        <lightning-button label="Delete" variant="destructive-text" data-record-id={opp.Id}
+                                            onclick={handleDelete}></lightning-button>
+                                            <lightning-button label="Examine" variant="brand" data-record-id={opp.Id}
+                                            onclick={examine}></lightning-button>
+                                    </lightning-button-group>
+                                </td>
+                            </tr>
+                        </template>
+                    </tbody>
+                </table>
+                <lightning-button label="Export Data" variant="Neutral" onclick={handleExport}></lightning-button>
+           <!-- /////////////////////////// -->
+                <template if:true={selectedOpportunityId}>
+                    <div class="slds-col slds-size_1-of-2">
+                        <!-- Record Page Section -->
+                        <lightning-record-form
+                            record-id={selectedOpportunityId}
+                            object-api-name="Opportunity"
+                            layout-type="Full"
+                            columns="1"
+                            mode="view">
+                        </lightning-record-form>
+                    </div>
+                </template>
+           
+           
+           
+           
+           
+           
+            </template>
+        </div>
+    </lightning-card>
+</template>

@@ -1,0 +1,53 @@
+:host {
+    display: block;
+    padding: 1rem;
+    background: linear-gradient(to bottom right, #4b6cb7, #182848);
+}
+
+.slds-card {
+    background-color: transparent;
+}
+
+.slds-card__header {
+    background-color: transparent;
+}
+
+.slds-card__title {
+    color: white;
+}
+
+.slds-table {
+    background-color: rgba(255, 255, 255, 0.8);
+    margin-top: 1rem; /* Add space between table and other elements */
+}
+
+.slds-table th,
+.slds-table td {
+    border: 1px solid #dddddd;
+}
+
+.slds-button-group {
+    margin-right: 0.5rem; /* Add space between buttons */
+    border-right: 1px solid #cccccc;
+}
+
+.slds-button-group lightning-button {
+    margin-right: 0.8rem; /* Add space between buttons */
+}
+
+.slds-button {
+    margin-right: 0.5rem;
+}
+.button-container {
+    display: flex-start;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+    margin-left: 2rem; /* Add some bottom margin for spacing */
+}
+.button-container lightning-button {
+    margin-right: 10px; /* Adjust the value as per your requirement */
+}
+
+.custom-input.slds-form-element__label {
+    font-weight: bold;
+}

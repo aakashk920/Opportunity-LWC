@@ -1,0 +1,38 @@
+<template>
+    <lightning-card title="Fetch Account Detail">
+        <div class="slds-var-p-around_small">
+            <lightning-input label="Enter Account Name" value={accountName}
+                onchange={handleAccountNameChange}></lightning-input>
+            <lightning-input label="Industry" value={industry} onchange={handleIndustryChange}></lightning-input>
+            <lightning-input label="Phone" value={phone} onchange={handlePhoneChange}></lightning-input>
+            <lightning-input label="Website" value={website} onchange={handleWebsiteChange}></lightning-input>
+            <lightning-button label="Fetch Account" onclick={fetchAccountData} variant="brand"></lightning-button>
+            <lightning-button variant="destructive" label="Reset" onclick={reset}></lightning-button>
+
+            <template if:true={accountData}>
+                <div class="slds-var-p-around_small">
+                    <p><strong>Name : </strong> {accountData.Name}</p>
+                    <p><strong>Industry:</strong> {accountData.Industry}</p>
+                    <p><strong>Phone:</strong> {accountData.Phone}</p>
+                    <p><strong>Website:</strong> {accountData.Website}</p>
+
+                    <template if:true={accountData.Contacts}>
+                        <p><strong>Contacts Information : </strong></p>
+
+                        <template for:each={accountData.Contacts} for:item="contact">
+                            <div key={contact.Id}>
+                                <p><strong>Contact Name:</strong>{contact.Name}</p>
+                                <p><strong>Contact Email:</strong> {contact.Email}</p>
+                                <p><strong>Contact Phone:</strong> {contact.Phone}</p>
+                            </div>
+                        </template>
+                    </template>
+                </div>
+            </template>
+            <template if:false={accountData}>
+                <p> No Account Data Found.</p>
+            </template>
+            <lightning-button label="Create New Account" onclick={createNewAccount} variant="brand"></lightning-button>
+        </div>
+    </lightning-card>
+</template>
